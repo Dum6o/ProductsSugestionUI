@@ -1,0 +1,28 @@
+<div class="form-center">
+  <form>
+    <mat-form-field> 
+      <mat-select placeholder="Your age" [(value)]="selectedAge" required>
+        <mat-option *ngFor="let age of ages" [value]="age.value">{{age.text}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field> 
+      <mat-select placeholder="Your income" [(value)]="selectedIncome" required>
+        <mat-option *ngFor="let income of incomes" [value]="income.value">{{income.text}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-slide-toggle
+        class="example-margin"
+        color="primary"
+        [checked]="checked"
+        required="true"
+        change="onSlideChange()">
+      Student
+    </mat-slide-toggle>
+    <br><br>
+  </form>
+  <button (click)="onSubmit()" [disabled]="selectedAge === undefined || selectedIncome === undefined" class="btn btn-primary">Submit</button>
+</div>
