@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DropDownItem } from 'src/app/interfaces/drop-down-item';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
