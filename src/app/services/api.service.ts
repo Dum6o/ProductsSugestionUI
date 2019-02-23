@@ -1,11 +1,9 @@
-import { Injectable, InjectionToken, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ProductsResponse } from '../interfaces/products-response';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { ProductsRequest } from '../interfaces/products-request';
-
-/*export const apiUrlToken = new InjectionToken('apiUrl');*/
 
 @Injectable({
   providedIn: 'root'
