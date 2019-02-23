@@ -6,6 +6,8 @@ import { MatCardModule, MatSlideToggleModule, MatSelectModule, MatFormFieldModul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './components/form/form.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api.service';
 
 const ROUTES: Routes = [
   { path: 'form', component: FormComponent },
@@ -19,6 +21,7 @@ const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatCardModule,
     MatSlideToggleModule,
@@ -26,7 +29,7 @@ const ROUTES: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

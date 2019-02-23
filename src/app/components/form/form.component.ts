@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DropDownItem } from 'src/app/interfaces/drop-down-item';
+import { ApiService } from 'src/app/services/api.service';
+import { ProductsRequest } from 'src/app/interfaces/products-request';
 
 @Component({
   selector: 'app-form',
@@ -17,9 +19,20 @@ export class FormComponent implements OnInit {
   selectedIncome: number;
   isStudent = false;
 
-  constructor() { }
+  isConnected: boolean;
+  connectionError: any;
+  response: string[];
+
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
+    this.api.checkConnection().subscribe(
+      data => {
+        this.isConnected = data;
+      },
+      error => this.connectionError = error
+    );
+
     this.ages = [
       {text: '0-17', value: 1},
       {text: '18-64', value: 2},
@@ -36,14 +49,26 @@ export class FormComponent implements OnInit {
 
   onSlideChange() {
     this.isStudent = !this.isStudent;
+    this.checked = this.isStudent;
   }
 
   onSubmit() {
-    this.formReset();
+    const request: ProductsRequest = {
+      ageId: this.selectedAge,
+      isStudent: this.isStudent,
+      incomeId: this.selectedIncome,
+    };
+    this.api.getProducts(request).subscribe(
+      data => {
+        this.response = data;
+      }
+    );
   }
 
   formReset() {
     this.selectedAge = this.selectedIncome = undefined;
-    this.isStudent = this.checked = false;
+    this.isStudent = false;
+    this.checked = false;
+    this.response = undefined;
   }
 }

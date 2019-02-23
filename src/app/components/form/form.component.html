@@ -19,10 +19,13 @@
         color="primary"
         [checked]="checked"
         required="true"
-        change="onSlideChange()">
+        (change)="onSlideChange()">
       Student
     </mat-slide-toggle>
     <br><br>
   </form>
+  <button (click)="formReset()" class="btn btn-secondary" style="margin-right: 10px">Reset</button>
   <button (click)="onSubmit()" [disabled]="selectedAge === undefined || selectedIncome === undefined" class="btn btn-primary">Submit</button>
+  <br><br><br>
+  <pre *ngIf="response">{{response | json}}</pre>
 </div>
